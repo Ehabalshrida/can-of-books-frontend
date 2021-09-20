@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import axios from 'axios';
+import BestBooks from './components/BestBooks';
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      data:[],
+      showData: false,
+    }
+  }
+  componentDidMount=()=>{
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/books`).then(response=>{
+      this.setState({
+        data:response.data,
+        showData:true,
+      })
+    })
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+
+
+
+  render() {
+    return (
+      <>
+       <Header/>
+{
+
+this.state.showData&&this.state.data.map(item=>{
+return <BestBooks title={item.title} description={item.description} status={item.status} email={item.email}/>
+})
+
+
 }
 
-export default App;
+
+       <Footer/> 
+      </>
+    )
+  }
+}
+
+export default App
