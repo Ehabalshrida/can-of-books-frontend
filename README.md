@@ -1,5 +1,6 @@
 
-Name of feature: Resource Create and Delete
+Name of feature: Update a Resource..
+
 Start time: 2:00 pm
 Finish time: 12:00 am
 Actual time needed to complete: 10 hours
