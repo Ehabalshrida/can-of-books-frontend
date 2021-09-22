@@ -24,6 +24,8 @@ import { Table } from 'react-bootstrap'
     
   </tbody>
 </Table>  
+<button onClick={()=>{this.props.handleDelete(this.props.id)}}>Delete</button>
+<button onClick={()=>{this.props.handleUpdate(this.props.id,this.props.title, this.props.description,this.props.status,this.props.email)}}>Update</button>
                 
             </>
         )
