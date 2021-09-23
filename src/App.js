@@ -4,6 +4,10 @@ import Footer from './components/Footer'
 import axios from 'axios';
 import BestBooks from './components/BestBooks';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginButton from './components/loginbutton';
+import LogoutButton from './components/logoutbutton';
+//import specialcontent from './components/specialcontent';
+import { withAuth0 } from '@auth0/auth0-react';
 class App extends Component {
   constructor(props){
     super(props);
@@ -129,6 +133,9 @@ class App extends Component {
   render() {
     return (
       <>
+           {this.props.auth0.isAuthenticated?<>
+               <LogoutButton/>
+
       {
           !this.state.showUpdate?<>
           <form onSubmit={this.handleSubmit}>
@@ -163,10 +170,12 @@ handleDelete={this.handleDelete} handleUpdate={this.handleUpdate}/>
 }
 <br/>
 
-       <Footer/> 
+       <Footer/> </>:
+       <LoginButton/>
+  }
       </>
     )
   }
 }
 
-export default App
+export default withAuth0 (App)
